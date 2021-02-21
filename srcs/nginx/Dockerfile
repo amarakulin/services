@@ -6,7 +6,11 @@ COPY . /var/www/localhost
 WORKDIR /var/www/localhost
 
 RUN apk update && apk upgrade
-RUN apk add nginx openssl openssh supervisor
+RUN apk add nginx \
+            openssl \
+            openssh \
+            supervisor
+
 # Create the dir for Alpine
 RUN mkdir -p /run/nginx
 
@@ -20,6 +24,6 @@ RUN mv supervisor.conf /etc/supervisord.conf
 
 RUN ssh-keygen -A
 
-RUN adduser -D admin && echo "admin:pass" | chpasswd
+RUN adduser -D admin && echo "admin:admin" | chpasswd
 
 CMD /usr/bin/supervisord -c /etc/supervisord.conf

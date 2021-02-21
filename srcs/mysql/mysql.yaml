@@ -3,46 +3,43 @@ kind: PersistentVolumeClaim
 metadata: 
   name: mysql-pv-claim
   labels: 
-    app: wordpress_db
+    app: mysql
 spec: 
   accessModes: 
   - ReadWriteMany
   resources: 
     requests: 
-      storage: 10Gi
+      storage: 1Gi
 ---
 apiVersion: v1
 kind: Service
 metadata: 
   name: mysql-svc
   labels: 
-    app: wordpress_db
+    app: mysql
 spec: 
   ports: 
   - port: 3306
   selector: 
-    app: wordpress_db
-    tier: mysq
+    app: mysql
   type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
   labels: 
-    app: wordpress_db
+    app: mysql
   name: mysql-deployment
 spec: 
   selector: 
     matchLabels: 
-      app: wordpress_db
-      tier: mysql
+      app: mysql
   strategy: 
     type: Recreate
   template: 
     metadata: 
       labels: 
-        app: wordpress_db
-        tier: mysql
+        app: mysql
     spec: 
       containers: 
       - image: mysql_img
@@ -55,5 +52,5 @@ spec:
           name: mysql-persistent-storage
       volumes: 
       - name: mysql-persistent-storage
-        persistentVolumeClaim:
+        persistentVolumeClaim: 
           claimName: mysql-pv-claim

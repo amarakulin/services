@@ -1,4 +1,13 @@
 <?php
+ini_set('error_reporting', E_ALL);
+ini_set('log_errors','On'); // enable or disable php error logging (use 'On' or 'Off')
+ini_set('display_errors','On'); // enable or disable public display of errors (use 'On' or 'Off')
+// $test = mysqli_connect('mysql-svc:3306', 'www', 'www');
+// if (!$test) {
+// die('MySQL Error: ' . mysqli_error());
+// }
+// echo 'Database connection is working properly!';
+// mysqli_close($testConnection);
 /**
  * The base configuration for WordPress
  *
@@ -20,16 +29,16 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'wordpress' );
+define( 'DB_NAME', 'wordpress_db' );
 
 /** MySQL database username */
-define( 'DB_USER', 'admin' );
+define( 'DB_USER', 'www' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'admin' );
+define( 'DB_PASSWORD', 'www' );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'localhost' );
+define( 'DB_HOST', 'mysql-svc:3306' );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -77,13 +86,16 @@ $table_prefix = 'wp_';
  *
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', false );
+define( 'WP_DEBUG', true );
+
+// Enable Debug logging to the /wp-content/debug.log file
+define( 'WP_DEBUG_LOG', true );
 
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */
 if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', __DIR__ . '/' );
+        define( 'ABSPATH', __DIR__ . '/' );
 }
 
 /** Sets up WordPress vars and included files. */

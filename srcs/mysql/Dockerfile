@@ -1,12 +1,13 @@
 FROM alpine:3.12
 
-COPY ./init_mysql.sh .
-COPY ./my.cnf /etc
+EXPOSE 3306
+
 
 RUN apk update && apk upgrade 
-RUN apk add mariadb mariadb-client openrc
+RUN apk add mariadb mariadb-client
 
-RUN chmod +x init_mysql.sh
+COPY ./init_mysql.sh .
+COPY ./my.cnf /etc
+COPY ./wordpress_db.sql .
 
 CMD ./init_mysql.sh
-
