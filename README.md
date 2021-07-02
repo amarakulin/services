@@ -1,2 +1,2 @@
 # services_pich
-Fill Later
+🌐 This is a System Administration and Networking project using docker and kubernetes
