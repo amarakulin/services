@@ -3,7 +3,10 @@
 ## Description
 
 It's a setup configuration for Kubernetes cluster including different web-services.
-With the following structure
+
+With the following structure:
+
+![Structure view](/screenshots/structure.png)
 
 
 ## Requirments
